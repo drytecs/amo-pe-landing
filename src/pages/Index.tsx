@@ -7,24 +7,28 @@ import Footer from "@/components/Footer";
 const Index = () => {
   const products = [
     {
+      id: "comfort-plus-masculino",
       image: "https://images.unsplash.com/photo-1549298916-b41d501d3772",
       name: "Comfort Plus Masculino",
       description: "Sapato casual com tecnologia de amortecimento avançado",
       price: "R$ 299,90",
     },
     {
+      id: "elegance-feminino",
       image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2",
       name: "Elegance Feminino",
       description: "Scarpin confortável para o dia a dia no trabalho",
       price: "R$ 259,90",
     },
     {
+      id: "sport-comfort",
       image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a",
       name: "Sport Comfort",
       description: "Tênis esportivo com suporte anatômico",
       price: "R$ 329,90",
     },
     {
+      id: "classic-comfort",
       image: "https://images.unsplash.com/photo-1560343090-f0409e92791a",
       name: "Classic Comfort",
       description: "Mocassim com palmilha memory foam",
@@ -97,8 +101,8 @@ const Index = () => {
             Nossa Coleção
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product, index) => (
-              <ProductCard key={index} {...product} />
+            {products.map((product) => (
+              <ProductCard key={product.id} {...product} />
             ))}
           </div>
         </div>

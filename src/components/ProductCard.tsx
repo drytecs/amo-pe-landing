@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
+
 interface ProductCardProps {
   image: string;
   name: string;
   description: string;
   price: string;
+  id: string;
 }
 
-const ProductCard = ({ image, name, description, price }: ProductCardProps) => {
+const ProductCard = ({ image, name, description, price, id }: ProductCardProps) => {
   return (
     <div className="group relative overflow-hidden rounded-lg bg-white shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
       <div className="aspect-square overflow-hidden">
@@ -20,9 +23,12 @@ const ProductCard = ({ image, name, description, price }: ProductCardProps) => {
         <p className="mb-4 text-gray-600">{description}</p>
         <div className="flex items-center justify-between">
           <span className="text-lg font-semibold text-primary">{price}</span>
-          <button className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-dark">
+          <Link
+            to={`/produto/${id}`}
+            className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+          >
             Mais detalhes
-          </button>
+          </Link>
         </div>
       </div>
     </div>
