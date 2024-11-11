@@ -26,6 +26,19 @@ const TermsOfUse = () => {
           <p className="mb-4">
             Sua privacidade é importante para nós. Consulte nossa Política de Privacidade para entender como coletamos e utilizamos suas informações.
           </p>
+
+          <h2 className="text-xl font-semibold mt-6 mb-4">4. Proteção de E-mails</h2>
+          <p className="mb-4">
+            Ao fornecer seu endereço de e-mail em nosso site, você concorda com nossa política de uso de e-mails. Seus dados serão protegidos e utilizados apenas para:
+          </p>
+          <ul className="list-disc pl-6 mb-4">
+            <li>Envio de confirmações de pedidos e atualizações de status</li>
+            <li>Comunicações sobre produtos e promoções (mediante seu consentimento)</li>
+            <li>Respostas a suas solicitações e dúvidas</li>
+          </ul>
+          <p className="mb-4">
+            Você pode optar por não receber comunicações promocionais a qualquer momento através do link de descadastramento presente em nossos e-mails ou entrando em contato conosco.
+          </p>
         </div>
       </main>
       <Footer />
