@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
+import { useState } from "react";
 
 interface Product {
   id: string;
@@ -56,6 +57,7 @@ const products: Record<string, Product> = {
 const ProductPage = () => {
   const { productId } = useParams();
   const { toast } = useToast();
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
   
   const product = products[productId as string];
   
@@ -72,16 +74,25 @@ const ProductPage = () => {
   }
 
   const handleAddToCart = () => {
+    if (!selectedSize) {
+      toast({
+        title: "Selecione um tamanho",
+        description: "Por favor, selecione um tamanho antes de adicionar ao carrinho.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     toast({
       title: "Produto adicionado ao carrinho",
-      description: `${product.name} foi adicionado ao seu carrinho.`,
+      description: `${product.name} tamanho ${selectedSize} foi adicionado ao seu carrinho.`,
     });
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 container mx-auto px-4 py-8">
+      <main className="flex-1 container mx-auto px-4 py-8 mt-16">
         <div className="grid md:grid-cols-2 gap-8">
           <div className="aspect-square overflow-hidden rounded-lg">
             <img
@@ -101,12 +112,22 @@ const ProductPage = () => {
                 {product.sizes.map((size) => (
                   <button
                     key={size}
-                    className="px-4 py-2 border rounded-md hover:bg-gray-100"
+                    onClick={() => setSelectedSize(size)}
+                    className={`px-4 py-2 border rounded-md transition-colors ${
+                      selectedSize === size 
+                        ? "bg-primary text-white border-primary" 
+                        : "hover:bg-gray-100"
+                    }`}
                   >
                     {size}
                   </button>
                 ))}
               </div>
+              {selectedSize && (
+                <p className="text-sm text-gray-600">
+                  Tamanho selecionado: {selectedSize}
+                </p>
+              )}
             </div>
             
             <Button

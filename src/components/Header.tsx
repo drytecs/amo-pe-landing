@@ -1,22 +1,44 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/#" + id);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setIsMenuOpen(false);
+      }
     }
+  };
+
+  const handleComprarAgora = () => {
+    if (location.pathname !== "/") {
+      navigate("/#produtos");
+    } else {
+      const element = document.getElementById("produtos");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    setIsMenuOpen(false);
   };
 
   return (
     <header className="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-2xl font-display font-bold text-primary">
+          <div 
+            className="text-2xl font-display font-bold text-primary cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             Amo Pé
           </div>
 
@@ -31,7 +53,10 @@ const Header = () => {
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </button>
             ))}
-            <button className="btn-primary">
+            <button 
+              className="btn-primary"
+              onClick={handleComprarAgora}
+            >
               Compre Agora
             </button>
           </nav>
@@ -58,7 +83,10 @@ const Header = () => {
                   {item.charAt(0).toUpperCase() + item.slice(1)}
                 </button>
               ))}
-              <button className="btn-primary">
+              <button 
+                className="btn-primary"
+                onClick={handleComprarAgora}
+              >
                 Compre Agora
               </button>
             </div>
